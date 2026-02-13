@@ -17,6 +17,7 @@ import { I18nKey } from "#/i18n/declaration";
 import SettingsGearIcon from "#/icons/settings-gear.svg?react";
 import PuzzlePieceIcon from "#/icons/u-puzzle-piece.svg?react";
 import ListIcon from "#/icons/list.svg?react";
+import DocumentIcon from "#/icons/document.svg?react";
 
 export function Sidebar() {
   const { pathname } = useLocation();
@@ -151,6 +152,32 @@ export function Sidebar() {
               <PuzzlePieceIcon width={20} height={20} />
               <span className="hidden md:block text-sm font-medium">
                 {t(I18nKey.SETTINGS$NAV_INTEGRATIONS)}
+              </span>
+            </NavLink>
+
+            {/* Documentation Link */}
+            <NavLink
+              to="/documentation"
+              className={({ isActive }) =>
+                cn(
+                  "w-full flex items-center justify-center md:justify-start gap-3 px-3 py-2.5 rounded-lg",
+                  isActive
+                    ? "bg-zinc-800 text-blue-500"
+                    : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200",
+                  settings?.email_verified === false &&
+                    "pointer-events-none opacity-50",
+                )
+              }
+              tabIndex={settings?.email_verified === false ? -1 : 0}
+              onClick={(e) => {
+                if (settings?.email_verified === false) {
+                  e.preventDefault();
+                }
+              }}
+            >
+              <DocumentIcon width={20} height={20} />
+              <span className="hidden md:block text-sm font-medium">
+                {t(I18nKey.SIDEBAR$DOCS)}
               </span>
             </NavLink>
 

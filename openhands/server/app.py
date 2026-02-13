@@ -41,6 +41,7 @@ from openhands.server.routes.security import app as security_api_router
 from openhands.server.routes.settings import app as settings_router
 from openhands.server.routes.trajectory import app as trajectory_router
 from openhands.server.routes.notion import app as notion_api_router
+from openhands.server.routes.generate_docs import app as generate_docs_router
 from openhands.server.shared import conversation_manager, server_config
 from openhands.server.types import AppMode
 from openhands.version import get_version
@@ -103,4 +104,5 @@ if server_config.enable_v1:
     app.include_router(v1_router.router)
 app.include_router(trajectory_router)
 app.include_router(notion_api_router)
+app.include_router(generate_docs_router)
 add_health_endpoints(app)

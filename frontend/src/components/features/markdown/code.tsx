@@ -2,11 +2,13 @@ import React from "react";
 import { ExtraProps } from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { MermaidBlock } from "./mermaid-block";
 
 // See https://github.com/remarkjs/react-markdown?tab=readme-ov-file#use-custom-components-syntax-highlight
 
 /**
  * Component to render code blocks in markdown.
+ * Intercepts `language-mermaid` blocks and renders them as diagrams.
  */
 export function code({
   children,
@@ -15,6 +17,12 @@ export function code({
   React.HTMLAttributes<HTMLElement> &
   ExtraProps) {
   const match = /language-(\w+)/.exec(className || ""); // get the language
+
+  // ---- Mermaid interception ----
+  if (match?.[1] === "mermaid") {
+    const chart = String(children).replace(/\n$/, "");
+    return <MermaidBlock chart={chart} />;
+  }
 
   if (!match) {
     const isMultiline = String(children).includes("\n");
