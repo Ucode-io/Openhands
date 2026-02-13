@@ -7,6 +7,7 @@ import GitChanges from "#/icons/git_changes.svg?react";
 import VSCodeIcon from "#/icons/vscode.svg?react";
 import ThreeDotsVerticalIcon from "#/icons/three-dots-vertical.svg?react";
 import LessonPlanIcon from "#/icons/lesson-plan.svg?react";
+import DocsIcon from "#/icons/docs.svg?react";
 import { cn } from "#/utils/utils";
 import { useConversationLocalStorageState } from "#/utils/conversation-local-storage";
 import { ConversationTabNav } from "./conversation-tab-nav";
@@ -111,6 +112,15 @@ export function ConversationTabs() {
       tooltipContent: t(I18nKey.COMMON$BROWSER),
       tooltipAriaLabel: t(I18nKey.COMMON$BROWSER),
       label: t(I18nKey.COMMON$BROWSER),
+    },
+    {
+      tabValue: "documentation",
+      isActive: isTabActive("documentation"),
+      icon: DocsIcon,
+      onClick: () => selectTab("documentation"),
+      tooltipContent: t(I18nKey.SIDEBAR$DOCS),
+      tooltipAriaLabel: t(I18nKey.SIDEBAR$DOCS),
+      label: t(I18nKey.SIDEBAR$DOCS),
     },
   ];
 

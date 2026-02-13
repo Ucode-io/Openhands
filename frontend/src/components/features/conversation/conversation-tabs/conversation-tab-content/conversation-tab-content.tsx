@@ -16,6 +16,7 @@ const BrowserTab = lazy(() => import("#/routes/browser-tab"));
 const ServedTab = lazy(() => import("#/routes/served-tab"));
 const VSCodeTab = lazy(() => import("#/routes/vscode-tab"));
 const PlannerTab = lazy(() => import("#/routes/planner-tab"));
+const DocumentationTab = lazy(() => import("#/routes/documentation-tab"));
 
 const TAB_CONFIG = {
   editor: {
@@ -41,6 +42,10 @@ const TAB_CONFIG = {
   planner: {
     component: PlannerTab,
     titleKey: I18nKey.COMMON$PLANNER,
+  },
+  documentation: {
+    component: DocumentationTab,
+    titleKey: I18nKey.SIDEBAR$DOCS,
   },
 };
 
