@@ -1,7 +1,7 @@
 # Makefile for DevOps
 CURRENT_DIR=$(shell pwd)
 
-APP=$(shell basename ${CURRENT_DIR})
+APP=$(shell basename ${CURRENT_DIR} | tr '[:upper:]' '[:lower:]') 
 APP_CMD_DIR=${CURRENT_DIR}/cmd
 
 TAG=latest
