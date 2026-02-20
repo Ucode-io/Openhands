@@ -7,10 +7,12 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { I18nKey } from "#/i18n/declaration";
 import { mapProvider } from "#/utils/map-provider";
+import { formatModelName } from "#/utils/map-model";
 import {
   VERIFIED_MODELS,
   VERIFIED_PROVIDERS,
   VERIFIED_OPENHANDS_MODELS,
+  VERIFIED_GEMINI_MODELS,
 } from "#/utils/verified-models";
 import { extractModelAndProvider } from "#/utils/extract-model-and-provider";
 import { cn } from "#/utils/utils";
@@ -41,7 +43,7 @@ export function ModelSelector({
 }: ModelSelectorProps) {
   const [, setLitellmId] = React.useState<string | null>(null);
   const [selectedProvider, setSelectedProvider] = React.useState<string | null>(
-    null,
+    "gemini",
   );
   const [selectedModel, setSelectedModel] = React.useState<string | null>(null);
 
@@ -49,6 +51,9 @@ export function ModelSelector({
   const getVerifiedModels = () => {
     if (selectedProvider === "openhands") {
       return VERIFIED_OPENHANDS_MODELS;
+    }
+    if (selectedProvider === "gemini") {
+      return VERIFIED_GEMINI_MODELS;
     }
     return VERIFIED_MODELS;
   };
@@ -202,7 +207,7 @@ export function ModelSelector({
                 models[selectedProvider || ""]?.models?.includes(model),
               )
               .map((model) => (
-                <AutocompleteItem key={model}>{model}</AutocompleteItem>
+                <AutocompleteItem key={model} textValue={formatModelName(model)}>{formatModelName(model)}</AutocompleteItem>
               ))}
           </AutocompleteSection>
           {models[selectedProvider || ""]?.models?.some(
@@ -215,8 +220,12 @@ export function ModelSelector({
                   <AutocompleteItem
                     data-testid={`model-item-${model}`}
                     key={model}
+                    textValue={formatModelName(model)}
                   >
-                    {model}
+                    <span className="flex flex-col">
+                      <span>{formatModelName(model)}</span>
+                      <span className="text-xs text-default-400">({model})</span>
+                    </span>
                   </AutocompleteItem>
                 ))}
             </AutocompleteSection>

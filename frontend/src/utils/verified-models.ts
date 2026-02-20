@@ -6,6 +6,23 @@ export const VERIFIED_PROVIDERS = [
   "mistral",
   "lemonade",
   "clarifai",
+  "gemini",
+];
+
+export const VERIFIED_GEMINI_MODELS = [
+  "gemini-3.1-pro",
+  "gemini-3.1-flash",
+  "gemini-3.1-flash-lite",
+  "gemini-3-deep-think",
+  "gemini-2.5-pro",
+  "gemini-2.5-flash",
+  "gemini-2.5-flash-live",
+  "gemini-1.5-pro",
+  "gemini-1.5-flash",
+  "gemini-1.5-flash-8b",
+  "gemini-2.0-flash",
+  "gemini-2.0-flash-lite",
+  "gemini-2.0-pro-exp",
 ];
 export const VERIFIED_MODELS = [
   "o3-mini-2025-01-31",
